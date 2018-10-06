@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_geometrico"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Geometrico">
+
+    <com.jjoe64.graphview.GraphView
+        android:id="@+id/scatterPlot"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <Button
+        android:id="@+id/btnAddPt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/scatterPlot"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Adicionar conector" />
+
+    <EditText
+        android:id="@+id/numX"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/scatterPlot"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:hint="x"
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
+
+    <EditText
+        android:id="@+id/numY"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@+id/numX"
+        android:background="@android:drawable/editbox_background"
+        android:ems="10"
+        android:hint="y"
+        android:inputType="numberDecimal"
+        android:textAlignment="center" />
+
+    <Button
+        android:id="@+id/bt_nextpagebutton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="15dp"
+        android:background="@android:color/transparent"
+        android:text="Calcular"
+        android:textSize="15dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_testIntent2"
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="48dp"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/tv_testeResult2"
+        android:layout_width="234dp"
+        android:layout_height="43dp"
+        android:layout_alignStart="@+id/tv_testIntent2"
+        android:layout_below="@+id/tv_testIntent2"
+        android:layout_marginTop="-48dp"
+        android:text="TextView" />
+
+
+</RelativeLayout>
+

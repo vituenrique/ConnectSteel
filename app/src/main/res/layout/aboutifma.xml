@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="175dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentTop="true"
+                        android:src="@drawable/ifma"
+                        android:id="@+id/iv_ifmalogo"/>
+                </RelativeLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tv_about"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:text="ConnectSteel - Dimensionamento de ligações metálicas parafusadas sob tração conforme a norma ABNT NBR 8800.
+Aplicação desenvolvida como trabalho de conclusão de curso na disciplina de Monografia 2.
+Aluno autor: João Victor Abas Matos - Engenharia Civil (IFMA)
+Professor orientador: André Sarkis Muller (IFMA)
+Este software auxilia no dimensionamento de ligações parafusadas em chapas tracionadas.  É destinado a estudantes de Engenharia Civil e Engenharia Mecânica e tem função exclusivamente acadêmica. Sob nenhuma hipótese os resultados apresentados nesta aplicação devem substituir o trabalho de um projetista especialista.
+O escopo de cálculo engloba:
+•	Cálculo da resistência ao cisalhamento na seção do conector.
+•	Cálculo da resistência ao rasgamento da chapa e pressão de apoio do conector
+•	Cálculo da resistência a tração da chapa
+•	Cálculo da resistência ao cisalhamento em bloco
+A solicitação de cálculo (Sd), bem como a resistência de cálculo (Rd) são obtidas a partir de método de estados de limites únicos (ELU).
+
+"
+                        android:textColor="@color/black"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+
+</ScrollView>
