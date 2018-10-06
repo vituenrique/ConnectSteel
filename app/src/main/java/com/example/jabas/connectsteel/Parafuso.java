@@ -77,7 +77,7 @@ public abstract class Parafuso {
 
     protected void areaDoParafuso() {
         this.area = (Math.PI * Math.pow(d / 10, 2)) / 4;
-    }
+}
 
     protected void calculaDfuro(){
         double df = 0;

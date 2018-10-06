@@ -60,21 +60,16 @@
         android:id="@+id/tv_testIntent2"
         android:layout_width="229dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="48dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp"
+        android:layout_below="@+id/numY"
         android:text="TextView" />
 
     <TextView
         android:id="@+id/tv_testeResult2"
-        android:layout_width="234dp"
-        android:layout_height="43dp"
-        android:layout_alignStart="@+id/tv_testIntent2"
-        android:layout_below="@+id/tv_testIntent2"
-        android:layout_marginTop="-48dp"
+        android:layout_width="294dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/bt_nextpagebutton4"
         android:text="TextView" />
 
 

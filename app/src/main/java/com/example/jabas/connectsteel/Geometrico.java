@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.PointsGraphSeries;
+import com.jjoe64.graphview.series.LineGraphSeries;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,12 +23,12 @@ import java.util.Collections;
 
 public class Geometrico extends AppCompatActivity {
 
-    public double dPar,dfPar,fuPar,fyPar,lPar,fuChapa,fyChapa,bChapa,hChapa,tChapa,Ng,Nq,Nq2,Sd,yg,yq,wu0,wu1,wu2,ya1,ya2,yq2,wu0b,wu1b,wu2b,RanTra,RagTra,ResBloco,An1,Ag1;
+    public double dPar,dfPar,fuPar,fyPar,lPar,fuChapa,fyChapa,bChapa,hChapa,tChapa,Ng,Nq,Nq2,Sd,yg,yq,wu0,wu1,wu2,ya1,ya2,yq2,wu0b,wu1b,wu2b,RanTra,RagTra,ResBloco,An1,Ag1, rnvPar, resPressaoApoio;
     public double cts = 1;
     public String testepaths = "";
     public String materialParafuso = "";
     public String materialchapaS = "";
-
+    public double distMin;
 
     public boolean Protegido;
     public TextView testintent2,testresults;
@@ -38,6 +39,10 @@ public class Geometrico extends AppCompatActivity {
 
     //add PointsGraphSeries of DataPoint type
     PointsGraphSeries<DataPoint> xySeries;
+    LineGraphSeries<DataPoint> border1;
+    LineGraphSeries<DataPoint> border2;
+    LineGraphSeries<DataPoint> border3;
+    LineGraphSeries<DataPoint> border4;
 
     private Button btnAddPt;
 
@@ -71,22 +76,40 @@ public class Geometrico extends AppCompatActivity {
         mY = (EditText) findViewById(R.id.numY);
         mScatterPlot = (GraphView) findViewById(R.id.scatterPlot);
         xyValueArray = new ArrayList<>();
+        distMin = minimoDistanciaParBorda();
 
+        border1 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(distMin / 10, distMin / 10),
+                new DataPoint(distMin / 10, bChapa / 10 - distMin / 10)
+        });
+        border2 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(distMin / 10, bChapa / 10 - distMin / 10),
+                new DataPoint(hChapa / 10 - distMin / 10, bChapa / 10 - distMin / 10)
+        });
+
+        border3 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(distMin / 10, distMin / 10),
+                new DataPoint(hChapa / 10 - distMin / 10, distMin / 10)
+        });
+        border4 = new LineGraphSeries<>(new DataPoint[] {
+                new DataPoint(hChapa / 10 - distMin / 10, distMin / 10),
+                new DataPoint(hChapa / 10 - distMin / 10, bChapa / 10 - distMin / 10)
+        });
         init();
     }
 
     private void getmyItent2 () {
-        dPar = getIntent().getDoubleExtra("dPar",0);
+
         dfPar= getIntent().getDoubleExtra("dfPar",0);
-        lPar =getIntent().getDoubleExtra("lPar",0);
-        dPar =getIntent().getDoubleExtra("dPar",0);
-        fuPar= getIntent().getDoubleExtra("fuPar",0);
-        fyPar=getIntent().getDoubleExtra("fyPar",0);
-        fuChapa=getIntent().getDoubleExtra("fuChapa",0);
-        fyChapa=getIntent().getDoubleExtra("fyChapa",0);
-        bChapa=getIntent().getDoubleExtra("bChapa",0);
-        tChapa=getIntent().getDoubleExtra("tChapa",0);
-        hChapa=getIntent().getDoubleExtra("hChapa",0);
+        lPar = getIntent().getDoubleExtra("lPar",0);
+        dPar = getIntent().getDoubleExtra("dPar",0);
+        fuPar = getIntent().getDoubleExtra("fuPar",0);
+        fyPar = getIntent().getDoubleExtra("fyPar",0);
+        fuChapa = getIntent().getDoubleExtra("fuChapa",0);
+        fyChapa = getIntent().getDoubleExtra("fyChapa",0);
+        bChapa = getIntent().getDoubleExtra("bChapa",0);
+        tChapa = getIntent().getDoubleExtra("tChapa",0);
+        hChapa = getIntent().getDoubleExtra("hChapa",0);
 
         //Ng,Nq,Nq2,Sd,yg,yq,wu0,wu1,wu2,ya1,ya2,yq2,wu0b,wu1b,wu2b
 
@@ -116,9 +139,12 @@ public class Geometrico extends AppCompatActivity {
     private void show() {
         testintent2 = findViewById(R.id.tv_testIntent2);
         testresults= findViewById(R.id.tv_testeResult2);
-        testintent2.setText("teste testoso do teste  "+testepaths);
-        testresults.setText("Ran" +String.format("%.2f",RanTra)+"KN"  + " " + "Rag" +String.format("%.2f",RagTra)  + "ResBloco" + String.format("%.2f",ResBloco));
-
+        testintent2.setText("teste testoso do teste  " + testepaths);
+        testresults.setText("Ran " +String.format("%.2f", RanTra)+"KN "
+                + "Rag " +String.format("%.2f",RagTra)
+                + "\nResBloco " + String.format("%.2f",ResBloco)
+                + " RNV " + String.format("%.2f", rnvPar)
+        +"\nResPressaoApoio" + String.format("%.2f",resPressaoApoio));
 
         Log.d(TAG,"tste do teste do teste teste  " + testepaths);
     }
@@ -133,18 +159,27 @@ public class Geometrico extends AppCompatActivity {
                 if(!mX.getText().toString().equals("") && !mY.getText().toString().equals("") ){
                     double x = Double.parseDouble(mX.getText().toString());
                     double y = Double.parseDouble(mY.getText().toString());
-                    if(x>hChapa/10|| y > bChapa/10) { //MODIFICADO EM 5/10 PARA NAO ADD PTS FORA DO LIMITE
-                        toastMessage("Posição do conector fora dos limites da chapa");
-                    } else {
-                    Log.d(TAG, "onClick: Adding a new point. (x,y): (" + x + "," + y + ")" );
-                    xyValueArray.add(new XYValue(x,y));
-                    // nosso print
-                    Log.d(TAG,"Aqui eh quando adiciona!");
-                    for (int i = 0; i<xyValueArray.size();i++) {
-                        Log.d(TAG,Double.toString(xyValueArray.get(i).getX()) + ", " + Double.toString(xyValueArray.get(i).getY()));
 
+                    distMin = minimoDistanciaParBorda();
+                    if(x > hChapa / 10 || y > bChapa / 10) { //MODIFICADO EM 5/10 PARA NAO ADD PTS FORA DO LIMITE
+                        toastMessage("Posição do conector fora dos limites da chapa.");
+                    } else if (containsParafuso(x, y)) {
+                        toastMessage("Você não pode adicionar um conector sobre outro.");
+                    } else if (x * 10 < distMin || y * 10 < distMin || x * 10 > hChapa - distMin || y * 10 > bChapa - distMin) {
+                        toastMessage("A norma NBR 8800 estabelece a distância mínima entre parafuso e borda neste caso é de " + distMin + " mm");
+                    } else if (minimoDistanciaEntreParafusos(x, y)) {
+                        toastMessage("A norma NBR 8800 estabelece a distância mínima entre parafusos neste caso é de " + 3 * dPar + " mm");
+                    } else {
+                        Log.d(TAG, "onClick: Adding a new point. (x,y): (" + x + "," + y + ")" );
+                        xyValueArray.add(new XYValue(x,y));
+
+                        // nosso print
+                        Log.d(TAG,"Aqui eh quando adiciona!");
+                        for (int i = 0; i<xyValueArray.size();i++) {
+                            Log.d(TAG,Double.toString(xyValueArray.get(i).getX()) + ", " + Double.toString(xyValueArray.get(i).getY()));
+                        }
+                        init();
                     }
-                    init(); }
                 }else {
                     toastMessage("Preencha ambos os campos");
                 }
@@ -155,9 +190,124 @@ public class Geometrico extends AppCompatActivity {
         if(xyValueArray.size() != 0){
             createScatterPlot();
         }else{
+
+
+            border1.setColor(Color.RED);
+            border2.setColor(Color.RED);
+            border3.setColor(Color.RED);
+            border4.setColor(Color.RED);
+
+            mScatterPlot.addSeries(border1);
+            mScatterPlot.addSeries(border2);
+            mScatterPlot.addSeries(border3);
+            mScatterPlot.addSeries(border4);
+
+            mScatterPlot.getViewport().setYAxisBoundsManual(true);
+            mScatterPlot.getViewport().setMaxY(bChapa/10); /*get b */
+            mScatterPlot.getViewport().setMinY(0);
+
+            //set manual y bounds
+            mScatterPlot.getViewport().setXAxisBoundsManual(true);
+            mScatterPlot.getViewport().setMaxX(hChapa/10); /*get h*/
+            mScatterPlot.getViewport().setMinX(0);
+
+
             Log.d(TAG, "onCreate: No data to plot.");
         }
     }
+
+    private boolean containsParafuso(double x, double y){
+
+        for(int i = 0; i < xyValueArray.size(); i++){
+            if (xyValueArray.get(i).getX() == x && xyValueArray.get(i).getY() == y) return true;
+        }
+        return false;
+    }
+
+    private boolean minimoDistanciaEntreParafusos(double x, double y){
+
+        for(int i = 0; i < xyValueArray.size(); i++){
+            double dist = Math.sqrt(Math.pow(xyValueArray.get(i).getX() * 10 - x * 10, 2) + Math.pow(xyValueArray.get(i).getY() * 10 - y * 10, 2));
+         //   if (dist < 10 * dPar)
+                return false;
+        }
+        return false;
+    }
+
+    private double minimoDistanciaParBorda(){
+
+        double distMin;
+        if(dPar <= 19){
+            distMin = dPar + 6;
+        }else if(dPar <= 26){
+            distMin = dPar + 7;
+        }else if(dPar <= 30){
+            distMin = dPar + 9;
+        }else if(dPar <= 36){
+            distMin = dPar + 10;
+        }else{
+            distMin = 1.25 * dPar;
+        }
+        Log.d(TAG, "UAUAUUAUAUUAUAUAUUAU: " + distMin + "asdasdasd asd: " + dPar);
+        return distMin;
+    }
+
+    private String espacamentoMaximo(Chapa c){
+
+        int espMaximo;
+
+        if(Protegido){
+            espMaximo = 24;
+        }else{
+            espMaximo = 14;
+        }
+
+        for(int i = 0; i < c.getColunas().size(); i++){
+            for(int j = 1; j < c.getColunas().get(i).getParafusos().size(); j++){
+                if (j == 1){
+                    if(12 * c.getT() > 150){
+                        if (Math.abs(c.getColunas().get(i).getParafusos().get(0).getY() - c.getColunas().get(i).getParafusos().get(j).getY()) > 12 * c.getT()) {
+                            // Da um aviso.
+                            return "A norma NBR 8800 estabelece o espaçamento máximo do parafuso até a borda não pode ser maior que 12T ou 150 mm para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+                        }
+                    }else{
+                        if (Math.abs(c.getColunas().get(i).getParafusos().get(j - 1).getY() - c.getColunas().get(i).getParafusos().get(j).getY()) > 150) {
+                            // Da um aviso.
+                            return "A norma NBR 8800 estabelece o espaçamento máximo do parafuso até a borda não pode ser maior que 12T ou 150 mm para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+                        }
+                    }
+                    continue;
+                }
+                if (j == c.getColunas().get(i).getParafusos().size() - 1){
+                    if(12 * c.getT() > 150){
+                        if (Math.abs(c.getColunas().get(i).getParafusos().get(j - 1).getY() - c.getColunas().get(i).getParafusos().get(j).getY()) > 12 * c.getT()) {
+                            // Da um aviso.
+                            return "A norma NBR 8800 estabelece o espaçamento máximo do parafuso até a borda não pode ser maior que 12T ou 150 mm para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+                        }
+                    }else{
+                        if (Math.abs(c.getColunas().get(i).getParafusos().get(j - 1).getY() - c.getColunas().get(i).getParafusos().get(j).getY()) > 150) {
+                            // Da um aviso.
+                            return "A norma NBR 8800 estabelece o espaçamento máximo do parafuso até a borda não pode ser maior que 12T ou 150 mm para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+                        }
+                    }
+                    continue;
+                }
+                if (Math.abs(c.getColunas().get(i).getParafusos().get(j - 1).getY() - c.getColunas().get(i).getParafusos().get(j).getY()) > espMaximo * c.getT()) {
+                    // Da um aviso.
+                    return "A norma NBR 8800 estabelece o espaçamento máximo entre paraafusos de 24T para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+                }
+            }
+        }
+
+        for(int i = 1; i < c.getColunas().size(); i++){
+            if (Math.abs(c.getColunas().get(i - 1).getParafusos().get(0).getY() - c.getColunas().get(i).getParafusos().get(0).getY()) > espMaximo * c.getT()) {
+                // Da um aviso.
+                return "A norma NBR 8800 estabelece o espaçamento máximo entre paraafusos de 24T para estruturas com proteção anti-corrosão. Verifique o espaçamento máximo ou calcule assim mesmo.";
+            }
+        }
+        return "";
+    }
+
 
     private void createScatterPlot() {
         Log.d(TAG, "createScatterPlot: Creating scatter plot.");
@@ -180,6 +330,10 @@ public class Geometrico extends AppCompatActivity {
                 Log.e(TAG, "createScatterPlot: IllegalArgumentException: " + e.getMessage() );
             }
         }
+        border1.setColor(Color.RED);
+        border2.setColor(Color.RED);
+        border3.setColor(Color.RED);
+        border4.setColor(Color.RED);
 
         //set some properties
         xySeries.setShape(PointsGraphSeries.Shape.RECTANGLE);
@@ -187,8 +341,9 @@ public class Geometrico extends AppCompatActivity {
         xySeries.setSize(20f);
 
         //set Scrollable and Scaleable
-        mScatterPlot.getViewport().setScalable(true);
-        mScatterPlot.getViewport().setScalableY(true);
+        //mScatterPlot.getViewport().setScalable(true);
+        //mScatterPlot.getViewport().setScalableY(true);
+
         mScatterPlot.getViewport().setScrollable(true);
         mScatterPlot.getViewport().setScrollableY(true);
 
@@ -201,6 +356,11 @@ public class Geometrico extends AppCompatActivity {
         mScatterPlot.getViewport().setXAxisBoundsManual(true);
         mScatterPlot.getViewport().setMaxX(hChapa/10); /*get h*/
         mScatterPlot.getViewport().setMinX(0);
+
+        mScatterPlot.addSeries(border1);
+        mScatterPlot.addSeries(border2);
+        mScatterPlot.addSeries(border3);
+        mScatterPlot.addSeries(border4);
 
         mScatterPlot.addSeries(xySeries);
     }
@@ -304,22 +464,25 @@ public class Geometrico extends AppCompatActivity {
      * @param furacaoParafuso
      * @return
      */
-    private Chapa gerarChapa(String nome, float b, float t, float h, String matChapa, String furacao, boolean isParafusoComun, float d, boolean matParafuso, float l, double furacaoParafuso, boolean protecao){
+    private Chapa gerarChapa(String nome, float b, float t, float h, String matChapa, String furacao, boolean isParafusoComun, float d, boolean matParafuso, float l, double furacaoParafuso, boolean protecao,double fu, double fy,double fuPar, double fyPar){
 
         //Verifica o tipo de parafuso
 
-        if (materialParafuso == "A307") {
+        if (materialParafuso.equals("A307")||  materialParafuso.equals("")) {
             isParafusoComun=true;
+
 
         } else {
             isParafusoComun=false;
         }
 
+        Log.d("oola" , Boolean.toString(isParafusoComun));
+
 
         ArrayList<Float> colunas = getColunasPorParafusos();
         Collections.sort(colunas);
 
-        Chapa chapa = new Chapa(nome, b, t, h, matChapa, furacao, protecao);
+        Chapa chapa = new Chapa(nome, b, t, h, matChapa, furacao, protecao,fu,fy);
 
         for (int i = 0; i < colunas.size(); i++){
             chapa.getColunas().add(new Coluna(colunas.get(i), Integer.toString(i)));
@@ -339,9 +502,9 @@ public class Geometrico extends AppCompatActivity {
                 String label = chapa.getColunas().get(i).getName() + (chapa.getColunas().get(i).getParafusos().size() + 1);
                 Parafuso p = null;
                 if(isParafusoComun){
-                    p = new ParafusoComum(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso);
+                    p = new ParafusoComum(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar);
                 }else{
-                    p = new ParafusoAltaResistencia(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso);
+                    p = new ParafusoAltaResistencia(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar);
                 }
 
                 if(p != null) chapa.getColunas().get(i).getParafusos().add(p);
@@ -495,93 +658,91 @@ public class Geometrico extends AppCompatActivity {
         return R;
     }
 
-
-
-
-
     // CALCULO CISALHAMENTO EM BLOCO
 
-    public   double ResCisBloco (Chapa c, double ya2, double fu, double fy, double cts) {
+   public   double ResCisBloco (Chapa c, double ya2, double fu, double fy, double cts) {
 
-        Parafuso maior = c.getColunas().get(0).getParafusos().get(1); /* cisalhamento para primeira linha */
-        Parafuso menor = c.getColunas().get(0).getParafusos().get(1);
-        for (int i = 0; i < c.getColunas().size(); i++) {
-            if (c.getColunas().get(i).getParafusos().get(1).getY() < menor.getY())
-                menor = c.getColunas().get(i).getParafusos().get(1);
-        }
-        for (int i = 0; i < c.getColunas().size(); i++) {
-            if (c.getColunas().get(i).getParafusos().get(1).getX() > maior.getX())
-                if(c.getColunas().get(i).getParafusos().get(1).getY()==menor.getY())
-                    maior = c.getColunas().get(i).getParafusos().get(1);
-        }
+       Parafuso maior = c.getColunas().get(0).getParafusos().get(1); /* cisalhamento para primeira linha */
+       Parafuso menor = c.getColunas().get(0).getParafusos().get(1);
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(1).getY() < menor.getY())
+               menor = c.getColunas().get(i).getParafusos().get(1);
+       }
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(1).getX() > maior.getX())
+               if (c.getColunas().get(i).getParafusos().get(1).getY() == menor.getY())
+                   maior = c.getColunas().get(i).getParafusos().get(1);
+       }
 
-        Parafuso pultimalinhaY = c.getColunas().get(0).getParafusos().get(c.getColunas().get(0).getParafusos().size()-2); /* cisalhamento para ultima linha */
-        Parafuso pultimalinhaX = c.getColunas().get(0).getParafusos().get(c.getColunas().get(0).getParafusos().size()-2);
-        for (int i=0; i < c.getColunas().size(); i++){
-            if(c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2).getY()>pultimalinhaY.getY())
-                pultimalinhaY = c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2);
-        }
-        for (int i=0; i < c.getColunas().size(); i++){
-            if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2).getX()>pultimalinhaX.getX())
-                if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2).getY()==pultimalinhaY.getY())
-                    pultimalinhaX=c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2);
-        }
+       Parafuso pultimalinhaY = c.getColunas().get(0).getParafusos().get(c.getColunas().get(0).getParafusos().size() - 2); /* cisalhamento para ultima linha */
+       Parafuso pultimalinhaX = c.getColunas().get(0).getParafusos().get(c.getColunas().get(0).getParafusos().size() - 2);
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2).getY() > pultimalinhaY.getY())
+               pultimalinhaY = c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2);
+       }
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2).getX() > pultimalinhaX.getX())
+               if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2).getY() == pultimalinhaY.getY())
+                   pultimalinhaX = c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2);
+       }
 
-        int naultimalinha = 0;
-        for (int i=0;i< c.getColunas().size();i++){
-            if(c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size()-2).getY()==pultimalinhaY.getY()) naultimalinha++;
-        }
-        double Anv2 = ((pultimalinhaX.getX() - ((naultimalinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
+       int naultimalinha = 0;
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2).getY() == pultimalinhaY.getY())
+               naultimalinha++;
+       }
+       double Anv2 = ((pultimalinhaX.getX() - ((naultimalinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
 
-        double Ant2 = ((c.getB()- (pultimalinhaY.getY() )- (dfPar / 2))* c.getT()) / 100;
+       double Ant2 = ((c.getB() - (pultimalinhaY.getY()) - (dfPar / 2)) * c.getT()) / 100;
 
-        double Agv2 = (pultimalinhaX.getX() * c.getT()) / 100;
+       double Agv2 = (pultimalinhaX.getX() * c.getT()) / 100;
 
+
+        /*
         System.out.println(naultimalinha +" na ultima linha");
         System.out.println(pultimalinhaY.getY());
         System.out.println(pultimalinhaX.getX());
         System.out.println(Anv2);
         System.out.println(Ant2);
         System.out.println(Agv2);
+        */
 
+       /* a partir daqui e original */
+       int naLinha = 0;
+       for (int i = 0; i < c.getColunas().size(); i++) {
+           if (c.getColunas().get(i).getParafusos().get(1).getY() == menor.getY()) naLinha++;
+       }
 
-        /* a partir daqui e original */
-        int naLinha = 0;
-        for (int i = 0; i < c.getColunas().size(); i++) {
-            if (c.getColunas().get(i).getParafusos().get(1).getY() == menor.getY()) naLinha++;
-        }
+       double Anv1 = ((maior.getX() - ((naLinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
 
-        double Anv1 = ((maior.getX() - ((naLinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
+       double Ant1 = ((menor.getY() - ((dfPar) / 2)) * c.getT()) / 100;
 
-        double Ant1 = ((menor.getY() - ((dfPar) / 2)) * c.getT()) / 100;
+       double Agv1 = (maior.getX() * c.getT()) / 100;
 
-        double Agv1 = (maior.getX() * c.getT()) / 100;
+       /* soma o de cima e o de baixo */
+       double Anv = Anv1 + Anv2;
+       double Agv = Agv1 + Agv2;
+       double Ant = Ant1 + Ant2;
 
-        /* soma o de cima e o de baixo */
-        double Anv = Anv1+Anv2;
-        double Agv = Agv1+Agv2;
-        double Ant = Ant1+Ant2;
+       double Rd1 = ((0.6 * fu * Anv) + (cts * fu * Ant)) / ya2;
 
-        double Rd1 = ((0.6 * fu * Anv) + (cts * fu * Ant)) / ya2;
+       double Rd2 = ((0.6 * fy * Agv) + (cts * fu * Ant)) / ya2;
 
-        double Rd2 = ((0.6 * fy * Agv) + (cts * fu * Ant)) / ya2;
+       System.out.println(naLinha + " na primeira linha");
+       System.out.println(menor.getY());
+       System.out.println(maior.getX());
+       System.out.println(Anv1);
+       System.out.println(Ant1);
+       System.out.println(Agv1);
 
-        System.out.println(naLinha + " na primeira linha");
-        System.out.println(menor.getY());
-        System.out.println(maior.getX());
-        System.out.println(Anv1);
-        System.out.println(Ant1);
-        System.out.println(Agv1);
-
-        if (Rd1 < Rd2) {
-            System.out.printf("A resistência de cisalhamento em bloco é  %.2f KN \n", Rd1);
-            return Rd1;
-        } else {
-            System.out.printf("A resistência de cisalhamento em bloco é  %.2f KN \n", Rd2);
-            return Rd2;
-        }
-
-    }
+       if (Rd1 < Rd2) {
+           System.out.printf("A resistência de cisalhamento em bloco é  %.2f KN \n", Rd1);
+           return Rd1;
+       } else {
+           System.out.printf("A resistência de cisalhamento em bloco é  %.2f KN \n", Rd2);
+           return Rd2;
+       }
+   }
 
 
     /* eu add aqui o botao*/
@@ -591,11 +752,11 @@ public class Geometrico extends AppCompatActivity {
             Log.d(TAG,Double.toString(xyValueArray.get(i).getX()) + ", " + Double.toString(xyValueArray.get(i).getY()));
         }
         Intent intent = new Intent(this, Resultados.class);
-        Chapa c = gerarChapa("Chaposa", new Float(bChapa), new Float(tChapa), new Float(hChapa), materialchapaS, "asdasd", true, new Float(dPar), true, new Float(lPar), 0, true);
+        Chapa c = gerarChapa("Chaposa", new Float(bChapa), new Float(tChapa), new Float(hChapa), materialchapaS, "asdasd", true, new Float(dPar), true, new Float(lPar), 0, true,fuChapa,fyChapa,fuPar,fyPar);
         ArrayList<String> output = c.ToString();
 
         Graph graph = gerarGrafo(c);
-
+        Log.d(TAG,"AsasdasdasdsdsDDDDDDDDDDDDDDDDDDDDDD  espaçamento maximo:" + espacamentoMaximo(c));
         Double d = gerarAllPaths(c, graph);
         Log.d("esse e o d " + TAG, Double.toString(d));
 
@@ -614,11 +775,17 @@ public class Geometrico extends AppCompatActivity {
         System.out.printf("A resistência na área bruta é %.2f KN \n",Rag);*/
 
 
+        int nParafusos  = c.getNumeroParafusos() - (c.getColunas().size()*2);
+        Log.d("oola","esse e o an " +Double.toString(ya2)+" "+Double.toString(c.getColunas().get(0).getParafusos().get(0).area)+" "+Double.toString(nParafusos)+" "+Double.toString(c.getColunas().get(0).getParafusos().get(0).fu)+" "+ nParafusos);
+        Log.d("oola","material do par " +materialParafuso);
+        rnvPar = c.getColunas().get(0).getParafusos().get(1).calculoRnv(ya2, 2, nParafusos);
 
-       ResBloco = ResCisBloco(c, ya2, fuChapa, fyChapa, cts);
+        resPressaoApoio=c.pressaodeApoioeRasgamento(ya2);
+
+        ResBloco = ResCisBloco(c, ya2, fuChapa, fyChapa, cts);
 
 
         show();
         startActivity(intent);
-    } /*ate aqui*/
+    }
 }

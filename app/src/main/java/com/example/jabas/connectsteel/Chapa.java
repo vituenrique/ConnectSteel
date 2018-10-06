@@ -18,7 +18,7 @@ public class Chapa {
     private ArrayList<Double>distP;
 
     //FAZER CALCULO DOS SBX!!! Vetor de floats - nao sera mais considerado
-    public Chapa(String name, float b, float t, double h, String material, String furacao, boolean protecao) {
+    public Chapa(String name, float b, float t, double h, String material, String furacao, boolean protecao,double fu ,double fy) {
         this.name = name;
         this.colunas = new ArrayList<Coluna>();
         this.b = b;
@@ -28,6 +28,8 @@ public class Chapa {
         this.furacao = furacao;
         this.distP= new ArrayList<Double>();
         this.protecao = protecao;
+        this.fu = fu;
+        this.fy = fy;
 
     }
     /*
@@ -93,8 +95,8 @@ public class Chapa {
 
     public void setPontoBorda(){
         for(int i = 0; i < this.getColunas().size(); i++){
-            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), 0, this.getColunas().get(i).getName() + 0, 20,false,false,0,0));
-            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), this.b,this.getColunas().get(i).getName() + "FIM", 20, false, false,0,0));
+            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), 0, this.getColunas().get(i).getName() + 0, 20,false,false,0,0,0,0));
+            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), this.b,this.getColunas().get(i).getName() + "FIM", 20, false, false,0,0,0,0));
         }
     }
 
@@ -125,13 +127,13 @@ public class Chapa {
         return 0;
     }
 
-    public double pressaodeApoioeRasgamento(double sInt, double ya2) {//refazer SXB VETOR DE FLOATS
+    public double pressaodeApoioeRasgamento( double ya2) {//refazer SXB VETOR DE FLOATS
 
         double db = colunas.get(0).getParafusos().get(0).d;
 
         double rdtExt;
         double rdtInt;
-        sInt = sInt / 10;
+       // sInt = sInt / 10;
         db = db / 10;
         t = t / 10;
 
