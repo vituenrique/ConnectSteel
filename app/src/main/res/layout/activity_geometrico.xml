@@ -61,6 +61,8 @@
         android:layout_width="229dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
+        android:layout_alignLeft="@id/numY"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/numY"
         android:text="TextView" />
 
@@ -68,9 +70,19 @@
         android:id="@+id/tv_testeResult2"
         android:layout_width="294dp"
         android:layout_height="63dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/bt_nextpagebutton4"
+        android:layout_below="@id/tv_testIntent2"
+        android:layout_marginTop="10dp"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/bt_ClearGraph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/btnAddPt"
+        android:layout_alignRight="@+id/btnAddPt"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/btnAddPt"
+        android:text="Limpar" />
 
 
 </RelativeLayout>

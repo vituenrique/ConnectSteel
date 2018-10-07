@@ -17,7 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".material" />
-        <activity android:name=".geometrico" />
         <activity android:name=".Geometrico" />
         <activity android:name=".Carregamento" />
         <activity android:name=".Resultados" />

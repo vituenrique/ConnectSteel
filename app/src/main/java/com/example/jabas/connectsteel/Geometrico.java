@@ -1,10 +1,14 @@
 package com.example.jabas.connectsteel;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Color;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,12 +17,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.PointsGraphSeries;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 
 public class Geometrico extends AppCompatActivity {
@@ -35,7 +43,7 @@ public class Geometrico extends AppCompatActivity {
 
     private static final String TAG = "Geometrico";
 
-    private  Button nextpage4; /*declarei o botao */
+    private  Button nextpage4,bt_cleaar; /*declarei o botao */
 
     //add PointsGraphSeries of DataPoint type
     PointsGraphSeries<DataPoint> xySeries;
@@ -43,6 +51,8 @@ public class Geometrico extends AppCompatActivity {
     LineGraphSeries<DataPoint> border2;
     LineGraphSeries<DataPoint> border3;
     LineGraphSeries<DataPoint> border4;
+
+    BarGraphSeries<DataPoint> backgroundChapa;
 
     private Button btnAddPt;
 
@@ -70,6 +80,15 @@ public class Geometrico extends AppCompatActivity {
 
             }
         }); /*ate aqui*/
+        bt_cleaar =(Button) findViewById(R.id.bt_ClearGraph) ;
+        bt_cleaar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mScatterPlot.removeAllSeries();
+                xyValueArray = new ArrayList<>();
+                drawBorders();
+            }
+        });
 
         btnAddPt = (Button) findViewById(R.id.btnAddPt);
         mX = (EditText) findViewById(R.id.numX);
@@ -95,7 +114,30 @@ public class Geometrico extends AppCompatActivity {
                 new DataPoint(hChapa / 10 - distMin / 10, distMin / 10),
                 new DataPoint(hChapa / 10 - distMin / 10, bChapa / 10 - distMin / 10)
         });
+
         init();
+    }
+
+    private void drawBorders(){
+
+        border1.setColor(Color.RED);
+        border2.setColor(Color.RED);
+        border3.setColor(Color.RED);
+        border4.setColor(Color.RED);
+
+        mScatterPlot.addSeries(border1);
+        mScatterPlot.addSeries(border2);
+        mScatterPlot.addSeries(border3);
+        mScatterPlot.addSeries(border4);
+
+        mScatterPlot.getViewport().setYAxisBoundsManual(true);
+        mScatterPlot.getViewport().setMaxY(bChapa/10); /*get b */
+        mScatterPlot.getViewport().setMinY(0);
+
+        //set manual y bounds
+        mScatterPlot.getViewport().setXAxisBoundsManual(true);
+        mScatterPlot.getViewport().setMaxX(hChapa/10); /*get h*/
+        mScatterPlot.getViewport().setMinX(0);
     }
 
     private void getmyItent2 () {
@@ -191,26 +233,7 @@ public class Geometrico extends AppCompatActivity {
             createScatterPlot();
         }else{
 
-
-            border1.setColor(Color.RED);
-            border2.setColor(Color.RED);
-            border3.setColor(Color.RED);
-            border4.setColor(Color.RED);
-
-            mScatterPlot.addSeries(border1);
-            mScatterPlot.addSeries(border2);
-            mScatterPlot.addSeries(border3);
-            mScatterPlot.addSeries(border4);
-
-            mScatterPlot.getViewport().setYAxisBoundsManual(true);
-            mScatterPlot.getViewport().setMaxY(bChapa/10); /*get b */
-            mScatterPlot.getViewport().setMinY(0);
-
-            //set manual y bounds
-            mScatterPlot.getViewport().setXAxisBoundsManual(true);
-            mScatterPlot.getViewport().setMaxX(hChapa/10); /*get h*/
-            mScatterPlot.getViewport().setMinX(0);
-
+            drawBorders();
 
             Log.d(TAG, "onCreate: No data to plot.");
         }
@@ -330,19 +353,25 @@ public class Geometrico extends AppCompatActivity {
                 Log.e(TAG, "createScatterPlot: IllegalArgumentException: " + e.getMessage() );
             }
         }
-        border1.setColor(Color.RED);
-        border2.setColor(Color.RED);
-        border3.setColor(Color.RED);
-        border4.setColor(Color.RED);
+
+
 
         //set some properties
-        xySeries.setShape(PointsGraphSeries.Shape.RECTANGLE);
-        xySeries.setColor(Color.GRAY);
-        xySeries.setSize(20f);
+        //xySeries.setShape(PointsGraphSeries.Shape.RECTANGLE);
+        xySeries.setColor(Color.rgb(100,100,100));
+        xySeries.setCustomShape(new PointsGraphSeries.CustomShape() {
+            @Override
+            public void draw(Canvas canvas, Paint paint, float x, float y, DataPointInterface dataPoint) {
+                paint.setStrokeWidth(10);
+                paint.setColor(Color.rgb(120,120,120));
+                canvas.drawCircle (x, y, 25f, paint);
+                paint.setColor(Color.rgb(80, 80, 80));
+                canvas.drawLine(x-10, y-10, x+10, y+10, paint);
+                canvas.drawLine(x+10, y-10, x-10, y+10, paint);
+            }
+        });
 
-        //set Scrollable and Scaleable
-        //mScatterPlot.getViewport().setScalable(true);
-        //mScatterPlot.getViewport().setScalableY(true);
+        xySeries.setSize(20f);
 
         mScatterPlot.getViewport().setScrollable(true);
         mScatterPlot.getViewport().setScrollableY(true);
@@ -357,10 +386,7 @@ public class Geometrico extends AppCompatActivity {
         mScatterPlot.getViewport().setMaxX(hChapa/10); /*get h*/
         mScatterPlot.getViewport().setMinX(0);
 
-        mScatterPlot.addSeries(border1);
-        mScatterPlot.addSeries(border2);
-        mScatterPlot.addSeries(border3);
-        mScatterPlot.addSeries(border4);
+        drawBorders();
 
         mScatterPlot.addSeries(xySeries);
     }
@@ -752,6 +778,7 @@ public class Geometrico extends AppCompatActivity {
             Log.d(TAG,Double.toString(xyValueArray.get(i).getX()) + ", " + Double.toString(xyValueArray.get(i).getY()));
         }
         Intent intent = new Intent(this, Resultados.class);
+
         Chapa c = gerarChapa("Chaposa", new Float(bChapa), new Float(tChapa), new Float(hChapa), materialchapaS, "asdasd", true, new Float(dPar), true, new Float(lPar), 0, true,fuChapa,fyChapa,fuPar,fyPar);
         ArrayList<String> output = c.ToString();
 
@@ -784,8 +811,25 @@ public class Geometrico extends AppCompatActivity {
 
         ResBloco = ResCisBloco(c, ya2, fuChapa, fyChapa, cts);
 
+        Bitmap salvarChapa = mScatterPlot.takeSnapshot();
+
+        intent.putExtra("snapshotGet", BitMapToString(salvarChapa));
+        intent.putExtra("rnvPar", rnvPar);
+        intent.putExtra("resPressaoApoio", resPressaoApoio);
+        intent.putExtra("RagTra", RagTra);
+        intent.putExtra("RanTra", RanTra);
+        intent.putExtra("ResBloco", ResBloco);
+        intent.putExtra("Sd", Sd);
 
         show();
         startActivity(intent);
+    }
+
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+        return temp;
     }
 }
