@@ -1,0 +1,139 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+MERGED from [com.android.support:design:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\39368e97e3e4819bf9c165fdf2b97a9c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\e72d214e8ff330ca8306a951282ab8b7\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd1a0f5af3ffb2a526d819ba2ee9c89e\AndroidManifest.xml:2:1-11:12
+MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\graphview-4.2.2.aar\7e1d59ea329c6efb19fab8c1e31865c0\AndroidManifest.xml:2:1-14:12
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\0d09167baf0e89ffb2a0de332040b969\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\e7b242a03d4c1a48746d1da86ce63872\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\f79b95490d1bc2e10a09485ff3c9f91a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\2081119445c27b495227130a4faa07b6\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\787f8d3b511c2191a39afabe59c2886b\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\75bec51ae2405aa233659c414bf8c269\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\9145f313937adf4ab2cebe5bd63ad77c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\829d5af36d9bc0839ce0e9ef278cb119\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\95d3f6989583bfb930f6d4b9b2ac65ef\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\0f451e359913f08c695effaeecd0c3e0\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d242c5229f80f44297ba5a80380a6ddb\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\732f2c3028e7ff4d0f2fe8e6e7f5db91\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f8dae99e9d0d5a73933695541dc1d38d\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\bfbbf41758c659bb421a4c329dcd29c8\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+	package
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:3:5-45
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:1-25:12
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:2:11-69
+application
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:5:5-23:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd1a0f5af3ffb2a526d819ba2ee9c89e\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd1a0f5af3ffb2a526d819ba2ee9c89e\AndroidManifest.xml:9:5-20
+MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\graphview-4.2.2.aar\7e1d59ea329c6efb19fab8c1e31865c0\AndroidManifest.xml:11:5-12:19
+MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\graphview-4.2.2.aar\7e1d59ea329c6efb19fab8c1e31865c0\AndroidManifest.xml:11:5-12:19
+	android:supportsRtl
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:10:9-35
+	android:label
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:8:9-41
+	android:roundIcon
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:9:9-54
+	android:icon
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:7:9-43
+	android:allowBackup
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:6:9-35
+	android:theme
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:11:9-40
+activity#com.example.jabas.connectsteel.MainActivity
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:12:9-18:20
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:12:19-47
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:13:13-17:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:14:17-69
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:14:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:16:17-77
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:16:27-74
+activity#com.example.jabas.connectsteel.material
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:19:9-46
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:19:19-43
+activity#com.example.jabas.connectsteel.Geometrico
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:20:9-48
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:20:19-45
+activity#com.example.jabas.connectsteel.Carregamento
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:21:9-50
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:21:19-47
+activity#com.example.jabas.connectsteel.Resultados
+ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:22:9-48
+	android:name
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml:22:19-45
+uses-sdk
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\39368e97e3e4819bf9c165fdf2b97a9c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\design-27.1.1.aar\39368e97e3e4819bf9c165fdf2b97a9c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\e72d214e8ff330ca8306a951282ab8b7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\e72d214e8ff330ca8306a951282ab8b7\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd1a0f5af3ffb2a526d819ba2ee9c89e\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\dd1a0f5af3ffb2a526d819ba2ee9c89e\AndroidManifest.xml:5:5-7:41
+MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\graphview-4.2.2.aar\7e1d59ea329c6efb19fab8c1e31865c0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.jjoe64:graphview:4.2.2] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\graphview-4.2.2.aar\7e1d59ea329c6efb19fab8c1e31865c0\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\0d09167baf0e89ffb2a0de332040b969\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-v4-27.1.1.aar\0d09167baf0e89ffb2a0de332040b969\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\e7b242a03d4c1a48746d1da86ce63872\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\e7b242a03d4c1a48746d1da86ce63872\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\f79b95490d1bc2e10a09485ff3c9f91a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\f79b95490d1bc2e10a09485ff3c9f91a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\2081119445c27b495227130a4faa07b6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\2081119445c27b495227130a4faa07b6\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\787f8d3b511c2191a39afabe59c2886b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\787f8d3b511c2191a39afabe59c2886b\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\75bec51ae2405aa233659c414bf8c269\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\75bec51ae2405aa233659c414bf8c269\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\9145f313937adf4ab2cebe5bd63ad77c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\9145f313937adf4ab2cebe5bd63ad77c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\829d5af36d9bc0839ce0e9ef278cb119\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\transition-27.1.1.aar\829d5af36d9bc0839ce0e9ef278cb119\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\95d3f6989583bfb930f6d4b9b2ac65ef\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-media-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-media-compat-27.1.1.aar\95d3f6989583bfb930f6d4b9b2ac65ef\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\0f451e359913f08c695effaeecd0c3e0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:27.1.1] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\0f451e359913f08c695effaeecd0c3e0\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d242c5229f80f44297ba5a80380a6ddb\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\d242c5229f80f44297ba5a80380a6ddb\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\732f2c3028e7ff4d0f2fe8e6e7f5db91\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\732f2c3028e7ff4d0f2fe8e6e7f5db91\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f8dae99e9d0d5a73933695541dc1d38d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\f8dae99e9d0d5a73933695541dc1d38d\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\bfbbf41758c659bb421a4c329dcd29c8\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.0] C:\Users\J.ABAS\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\bfbbf41758c659bb421a4c329dcd29c8\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\J.ABAS\AndroidStudioProjects\ConnectSteel4\app\src\main\AndroidManifest.xml

@@ -5,7 +5,7 @@ import android.util.Log;
 public class ParafusoComum extends Parafuso {
 
 
-    public ParafusoComum(float x, float y, String label, float d, boolean tipo, boolean material, double l, double furacao,double fu, double fy){
+    public ParafusoComum(float x, float y, String label, float d, boolean tipo, boolean material, double l, double furacao,double fu, double fy, double dfuro){
         this.x = x;
         this.y = y;
         this.label = label;
@@ -20,7 +20,7 @@ public class ParafusoComum extends Parafuso {
         /*calculaFu(tipo, material);
         calculaFy(tipo, material);*/
         areaDoParafuso();
-        calculaDfuro();
+       // calculaDfuro();
     }
     public double calculoRnv(double ya2, int nplanosdeCorte, int nParafusos) {
         Log.d("oola","esse e o an " +Double.toString(ya2)+" "+Double.toString(area)+" "+Double.toString(nplanosdeCorte)+" "+Double.toString(nParafusos)+" "+Double.toString(fu));

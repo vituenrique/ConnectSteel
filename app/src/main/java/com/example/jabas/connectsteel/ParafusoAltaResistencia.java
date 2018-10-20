@@ -2,7 +2,7 @@ package com.example.jabas.connectsteel;
 
 public class ParafusoAltaResistencia extends Parafuso{
 
-    public ParafusoAltaResistencia(float x, float y, String label, float d, boolean tipo, boolean material, double l, double furacao,double fu,double fy){
+    public ParafusoAltaResistencia(float x, float y, String label, float d, boolean tipo, boolean material, double l, double furacao,double fu,double fy,double dfuro){
         this.x = x;
         this.y = y;
         this.label = label;
@@ -17,7 +17,7 @@ public class ParafusoAltaResistencia extends Parafuso{
        /* calculaFu(tipo, material);
         calculaFy(tipo, material);*/
         areaDoParafuso();
-        calculaDfuro();
+       // calculaDfuro();
     }
     public double calculoRnv(double ya2, int nplanosdeCorte, int nParafusos) {
         this.ya2 = ya2;

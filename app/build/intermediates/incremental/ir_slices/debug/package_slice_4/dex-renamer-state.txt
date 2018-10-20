@@ -1,0 +1,4 @@
+#Sun Oct 07 19:11:48 GFT 2018
+base.0=C\:\\Users\\J.ABAS\\AndroidStudioProjects\\ConnectSteel4\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\42
+path.0=classes.dex
+renamed.0=classes.dex

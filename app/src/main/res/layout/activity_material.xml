@@ -31,7 +31,7 @@
                 android:id="@+id/iv_parafuso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/parafusotipo" />
+                app:srcCompat="@drawable/screwbolttoapp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -179,33 +179,33 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
-
-                <TextView
-                    android:id="@+id/tv_lpar"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginTop="25dp"
-                    android:text="l (Comprimento do parafuso)"
-                    android:textSize="18sp" />
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp">
 
-                <EditText
-                    android:id="@+id/et_lpar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:hint="mm"
-                    android:inputType="numberDecimal" />
+                    <TextView
+                        android:id="@+id/tv_lpar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="25dp"
+                        android:text="l (Comprimento do parafuso)"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/et_lpar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:hint="mm"
+                        android:inputType="numberDecimal" />
 
 
 
-            </RelativeLayout>
+                </RelativeLayout>
 
 
                 <Switch
@@ -224,22 +224,22 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tv_chapa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:text="Chapa"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_chapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="15dp"
+                    android:gravity="center"
+                    android:text="Chapa"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-            <ImageView
-                android:id="@+id/iv_chapa"
-                android:layout_width="match_parent"
-                android:layout_height="345dp"
-                app:srcCompat="@drawable/chapa" />
+                <ImageView
+                    android:id="@+id/iv_chapa"
+                    android:layout_width="match_parent"
+                    android:layout_height="345dp"
+                    app:srcCompat="@drawable/chapatoapp" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -311,23 +311,23 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp">
 
-                    <TextView
-                        android:id="@+id/tv_fychapa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginTop="25dp"
-                        android:text="fy (Resitência de escoamento)"
-                        android:textSize="18sp" />
+                        <TextView
+                            android:id="@+id/tv_fychapa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginTop="25dp"
+                            android:text="fy (Resitência de escoamento)"
+                            android:textSize="18sp" />
 
-                    <EditText
-                        android:id="@+id/et_fychapa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:hint="KN/cm2"
-                        android:inputType="numberDecimal" />
+                        <EditText
+                            android:id="@+id/et_fychapa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:hint="KN/cm2"
+                            android:inputType="numberDecimal" />
 
                     </RelativeLayout>
                 </LinearLayout>

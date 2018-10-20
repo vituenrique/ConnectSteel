@@ -1,5 +1,7 @@
 package com.example.jabas.connectsteel;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class Chapa {
@@ -16,6 +18,7 @@ public class Chapa {
     int nFurosInt;
     double rd;
     private ArrayList<Double>distP;
+    private static final String TAG = "Chapa";
 
     //FAZER CALCULO DOS SBX!!! Vetor de floats - nao sera mais considerado
     public Chapa(String name, float b, float t, double h, String material, String furacao, boolean protecao,double fu ,double fy) {
@@ -90,13 +93,14 @@ public class Chapa {
         for(int i = 0; i < this.getColunas().size(); i++){
             n += this.getColunas().get(i).getParafusos().size();
         }
+        Log.d(TAG,"numero de parafusos total " + n);
         return n;
     }
 
     public void setPontoBorda(){
         for(int i = 0; i < this.getColunas().size(); i++){
-            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), 0, this.getColunas().get(i).getName() + 0, 20,false,false,0,0,0,0));
-            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), this.b,this.getColunas().get(i).getName() + "FIM", 20, false, false,0,0,0,0));
+            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), 0, this.getColunas().get(i).getName() + 0, 20,false,false,0,0,0,0,0));
+            this.getColunas().get(i).getParafusos().add(new ParafusoComum(this.getColunas().get(i).getX(), this.b,this.getColunas().get(i).getName() + "FIM", 20, false, false,0,0,0,0,0));
         }
     }
 
@@ -129,7 +133,8 @@ public class Chapa {
 
     public double pressaodeApoioeRasgamento( double ya2) {//refazer SXB VETOR DE FLOATS
 
-        double db = colunas.get(0).getParafusos().get(0).d;
+        double db = colunas.get(0).getParafusos().get(1).d;
+        double dfpar = colunas.get(0).getParafusos().get(1).dfuro/10;
 
         double rdtExt;
         double rdtInt;
@@ -137,14 +142,21 @@ public class Chapa {
         db = db / 10;
         t = t / 10;
 
+
+        Log.d(TAG,"Db , t , fu , df  " +  db +" " +t +" " +fu + " "+ dfpar);
         /* Rasgamento para parafusos externos */
-        if (((1.2 * fu * (getColunas().get(0).getX()-(db/2))* t) / ya2) <= ((2.4 * fu * db * t) / ya2)) {
-            rdtExt = ((1.2 * fu * (getColunas().get(0).getX()-(db/2))* t) / ya2);
+        double a = ((getColunas().get(0).getX()/10)-(dfpar/2));
+        Log.d(TAG," esse a dist a  " +  a + " " + (1.2 * fu * ((getColunas().get(0).getX()/10)-(dfpar/2))* t) / ya2);
+
+        if (((1.2 * fu * ((getColunas().get(0).getX()/10)-(dfpar/2))* t) / ya2) <= ((2.4 * fu * db * t) / ya2)) {
+            rdtExt = ((1.2 * fu * ((getColunas().get(0).getX()/10)-(dfpar/2))* t) / ya2);
             System.out.println("Rd parafuso Ext = " + String.format("%.2f", rdtExt) + "KN");
         } else {
             rdtExt = ((2.4 * fu * db * t) / ya2);
             System.out.println("Rd parafuso Ext = " + String.format("%.2f", rdtExt) + "KN");
+            Log.d(TAG,"entrou no 2.4");
         }
+        Log.d(TAG,"Rd par Ext" +  rdtExt);
 /* Pressao de apoio para parafusos internos - Desconsiderando a possibilidade de rasgamento para parafusos internos. Deve-se limitar entao a distancia entre as colunas ser sempre maior que a distancia da coluna 0 para borda */
         /*for (int i=0; i < getColunas().size()-2; i++){
             distP.add(1.2*fu *(getColunas().get(i+1).getX() - getColunas().get(i).getX())*t/ya2) ;
@@ -152,8 +164,16 @@ public class Chapa {
             rdtInt = ((1.2 * fu * sInt * t) / ya2);
             System.out.println("Rd parafusos internos = " + String.format("%.2f", rdtInt) + "KN");*/
         rdtInt = ((2.4 * fu * db * t) / ya2);
+        int numcolunas =getColunas().size()-1;
+        Log.d(TAG,"num de colunas" +  numcolunas);
+        double NumeroEXT = (getColunas().get(0).getParafusos().size()-2) +(getColunas().get(numcolunas).getParafusos().size()-2);
+        double NumeroINT = getNumeroParafusos()-(2*getColunas().size())-NumeroEXT;
+        Log.d(TAG,"Rd par Interno" +  rdtInt);
+        Log.d(TAG,"Numero par internos" +  NumeroINT);
+        Log.d(TAG,"Rd par Externo" +  rdtInt);
+        Log.d(TAG,"Numero par Externos" +  NumeroEXT);
         System.out.println("Rd parafusos internos = " + String.format("%.2f", rdtInt) + "KN");
-        this.rd =  getColunas().get(0).getParafusos().size()* rdtExt + (getNumeroParafusos()- getColunas().get(0).getParafusos().size()) * rdtInt;
+        this.rd =  NumeroEXT* rdtExt + NumeroINT * rdtInt;
         return rd;
 
     }

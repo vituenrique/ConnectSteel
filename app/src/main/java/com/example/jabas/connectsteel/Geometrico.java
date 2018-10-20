@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -490,7 +491,7 @@ public class Geometrico extends AppCompatActivity {
      * @param furacaoParafuso
      * @return
      */
-    private Chapa gerarChapa(String nome, float b, float t, float h, String matChapa, String furacao, boolean isParafusoComun, float d, boolean matParafuso, float l, double furacaoParafuso, boolean protecao,double fu, double fy,double fuPar, double fyPar){
+    private Chapa gerarChapa(String nome, float b, float t, float h, String matChapa, String furacao, boolean isParafusoComun, float d, boolean matParafuso, float l, double furacaoParafuso, boolean protecao,double fu, double fy,double fuPar, double fyPar, double dfPar1){
 
         //Verifica o tipo de parafuso
 
@@ -502,7 +503,7 @@ public class Geometrico extends AppCompatActivity {
             isParafusoComun=false;
         }
 
-        Log.d("oola" , Boolean.toString(isParafusoComun));
+        Log.d("qual tipo de par e" , Boolean.toString(isParafusoComun));
 
 
         ArrayList<Float> colunas = getColunasPorParafusos();
@@ -528,9 +529,9 @@ public class Geometrico extends AppCompatActivity {
                 String label = chapa.getColunas().get(i).getName() + (chapa.getColunas().get(i).getParafusos().size() + 1);
                 Parafuso p = null;
                 if(isParafusoComun){
-                    p = new ParafusoComum(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar);
+                    p = new ParafusoComum(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar,dfPar1);
                 }else{
-                    p = new ParafusoAltaResistencia(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar);
+                    p = new ParafusoAltaResistencia(x, y, label, d, isParafusoComun, matParafuso, l, furacaoParafuso,fuPar,fyPar,dfPar1);
                 }
 
                 if(p != null) chapa.getColunas().get(i).getParafusos().add(p);
@@ -717,11 +718,15 @@ public class Geometrico extends AppCompatActivity {
            if (c.getColunas().get(i).getParafusos().get(c.getColunas().get(i).getParafusos().size() - 2).getY() == pultimalinhaY.getY())
                naultimalinha++;
        }
-       double Anv2 = ((pultimalinhaX.getX() - ((naultimalinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
+       Log.d(TAG,"dfPar que chega resbloc " +dfPar);
 
-       double Ant2 = ((c.getB() - (pultimalinhaY.getY()) - (dfPar / 2)) * c.getT()) / 100;
+       Log.d(TAG,"Menor x " + menor.getX()+" Menor y "+menor.getY()+" Maior x "+maior.getX()+" Maior y "+maior.getY()+" Pultima linhaX x "+pultimalinhaX.getX()+" Pultima linhaX y"+pultimalinhaX.getY()+" Pultima linhaY x "+pultimalinhaY.getX()+" Pultima linhaY y"+pultimalinhaY.getY() );
+       Log.d(TAG,"parafusos na ultima " + naultimalinha);
+       double Anv2 = ((pultimalinhaX.getX() - ((naultimalinha - 1) * (dfPar)) - (dfPar / 2)) * c.getT()/100) ;
 
-       double Agv2 = (pultimalinhaX.getX() * c.getT()) / 100;
+       double Ant2 = ((c.getB() - (pultimalinhaY.getY()) - ((dfPar) / 2)) * c.getT()/100) ;
+
+       double Agv2 = (pultimalinhaX.getX() * c.getT()/100) ;
 
 
         /*
@@ -738,18 +743,23 @@ public class Geometrico extends AppCompatActivity {
        for (int i = 0; i < c.getColunas().size(); i++) {
            if (c.getColunas().get(i).getParafusos().get(1).getY() == menor.getY()) naLinha++;
        }
+       Log.d(TAG,"Na primeira linha" + naLinha);
 
-       double Anv1 = ((maior.getX() - ((naLinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT()) / 100;
+       double Anv1 = ((maior.getX() - ((naLinha - 1) * (dfPar)) - ((dfPar) / 2)) * c.getT() /100) ;
 
-       double Ant1 = ((menor.getY() - ((dfPar) / 2)) * c.getT()) / 100;
+       double Ant1 = ((menor.getY() - ((dfPar) / 2)) * c.getT()/100) ;
 
-       double Agv1 = (maior.getX() * c.getT()) / 100;
+       double Agv1 = (maior.getX() * c.getT()/100);
 
        /* soma o de cima e o de baixo */
-       double Anv = Anv1 + Anv2;
-       double Agv = Agv1 + Agv2;
-       double Ant = Ant1 + Ant2;
+       double Anv = (Anv1 + Anv2)*10;
+       double Agv = (Agv1 + Agv2)*10;
+       double Ant = (Ant1 + Ant2)*10;
 
+       Log.d(TAG,"anv1 agv1 ant1 bloc " +Double.toString(Anv1) + " " +Double.toString(Agv1) + " " + Double.toString(Ant1) );
+       Log.d(TAG,"anv2 agv2 ant2 bloc " +Double.toString(Anv2) + " " +Double.toString(Agv2) + " " + Double.toString(Ant2) );
+
+       Log.d(TAG,"anv agv ant bloc " +Double.toString(Anv) + " " +Double.toString(Agv) + " " + Double.toString(Ant) );
        double Rd1 = ((0.6 * fu * Anv) + (cts * fu * Ant)) / ya2;
 
        double Rd2 = ((0.6 * fy * Agv) + (cts * fu * Ant)) / ya2;
@@ -779,7 +789,8 @@ public class Geometrico extends AppCompatActivity {
         }
         Intent intent = new Intent(this, Resultados.class);
 
-        Chapa c = gerarChapa("Chaposa", new Float(bChapa), new Float(tChapa), new Float(hChapa), materialchapaS, "asdasd", true, new Float(dPar), true, new Float(lPar), 0, true,fuChapa,fyChapa,fuPar,fyPar);
+        Chapa c = gerarChapa("Chaposa", new Float(bChapa), new Float(tChapa), new Float(hChapa), materialchapaS, "asdasd", true, new Float(dPar), true, new Float(lPar), 0, true,fuChapa,fyChapa,fuPar,fyPar,dfPar);
+
         ArrayList<String> output = c.ToString();
 
         Graph graph = gerarGrafo(c);
@@ -790,6 +801,7 @@ public class Geometrico extends AppCompatActivity {
         for(int i = 0; i < output.size(); i++){
             Log.d(TAG, output.get(i));
         }
+        Log.d(TAG,"dfpar " +Double.toString(dfPar));
 
         An1 =AreaLiquida(c.getT(),d);
         Log.d(TAG,"esse e o an " +Double.toString(An1));
@@ -797,6 +809,8 @@ public class Geometrico extends AppCompatActivity {
         Log.d(TAG, "esse e o ag " +Double.toString(Ag1));
         RanTra = Resistencia(An1,ya2,fuChapa);
         RagTra = Resistencia(Ag1,ya1,fyChapa);
+        Log.d(TAG,"Resistencia area bruta " +RagTra);
+        Log.d(TAG,"Resistencia area liquida " +RanTra);
 
         /*System.out.printf("A resistência na área líquida é  %.2f KN \n",Ran);
         System.out.printf("A resistência na área bruta é %.2f KN \n",Rag);*/
@@ -805,7 +819,7 @@ public class Geometrico extends AppCompatActivity {
         int nParafusos  = c.getNumeroParafusos() - (c.getColunas().size()*2);
         Log.d("oola","esse e o an " +Double.toString(ya2)+" "+Double.toString(c.getColunas().get(0).getParafusos().get(0).area)+" "+Double.toString(nParafusos)+" "+Double.toString(c.getColunas().get(0).getParafusos().get(0).fu)+" "+ nParafusos);
         Log.d("oola","material do par " +materialParafuso);
-        rnvPar = c.getColunas().get(0).getParafusos().get(1).calculoRnv(ya2, 2, nParafusos);
+        rnvPar = c.getColunas().get(0).getParafusos().get(1).calculoRnv(ya2, 1, nParafusos);
 
         resPressaoApoio=c.pressaodeApoioeRasgamento(ya2);
 
